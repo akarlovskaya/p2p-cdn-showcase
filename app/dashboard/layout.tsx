@@ -1,5 +1,5 @@
 // Shared layout for all dashboard pages (dashboard-specific layout)
-import { Header } from "../components/Header";
+import { Header } from "../components/header/Header";
 import ClientSidebar from "../components/ClientSidebar";
 
 export default function DashboardLayout({

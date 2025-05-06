@@ -1,6 +1,7 @@
 "use client";
 import { FiMenu, FiBell, FiUser } from "react-icons/fi";
-import { useSidebar } from "../hooks/use-sidebar";
+import { useSidebar } from "../../hooks/use-sidebar";
+import UserDropdown from "./UserDropdown";
 
 export function Header() {
   //const { toggle } = useSidebar();
@@ -23,11 +24,12 @@ export function Header() {
           <button className="p-1 text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-full">
             <FiBell className="h-6 w-6" />
           </button>
-          <div className="flex items-center">
-            <div className="h-8 w-8 rounded-full bg-primary-100 flex items-center justify-center">
-              <FiUser className="h-5 w-5 text-primary-600" />
-            </div>
-          </div>
+          {/* <div className="flex items-center"> */}
+          {/* <div className="h-8 w-8 rounded-full bg-primary-100 flex items-center justify-center"> */}
+          {/* <FiUser className="h-5 w-5 text-primary-600" /> */}
+          <UserDropdown />
+          {/* </div> */}
+          {/* </div> */}
         </div>
       </div>
     </header>
