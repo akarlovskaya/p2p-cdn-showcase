@@ -1,5 +1,4 @@
 "use client";
-
 import { FiMenu, FiBell, FiUser } from "react-icons/fi";
 import { useSidebar } from "../hooks/use-sidebar";
 

@@ -6,7 +6,6 @@ import {
   FiSettings,
   FiUsers,
 } from "react-icons/fi";
-//import Sidebar from "../components/Sidebar";
 import { Header } from "../components/Header";
 
 export default function DashboardLayout({
@@ -16,7 +15,6 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Sidebar - Similar to my previous component but adapted for Server Components */}
       <aside className="hidden md:flex md:flex-shrink-0">
         <div className="flex w-64 flex-col">
           <div className="flex h-16 flex-shrink-0 items-center px-4 border-b">
