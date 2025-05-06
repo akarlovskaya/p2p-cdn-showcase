@@ -1,12 +1,6 @@
 // Shared layout for all dashboard pages (dashboard-specific layout)
-import {
-  FiHome,
-  FiGlobe,
-  FiActivity,
-  FiSettings,
-  FiUsers,
-} from "react-icons/fi";
 import { Header } from "../components/Header";
+import ClientSidebar from "../components/ClientSidebar";
 
 export default function DashboardLayout({
   children,
@@ -15,42 +9,7 @@ export default function DashboardLayout({
 }) {
   return (
     <div className="flex h-screen bg-gray-100">
-      <aside className="hidden md:flex md:flex-shrink-0">
-        <div className="flex w-64 flex-col">
-          <div className="flex h-16 flex-shrink-0 items-center px-4 border-b">
-            <h2 className="text-lg font-semibold text-gray-800">P2P CDN</h2>
-          </div>
-          <nav className="flex-1 overflow-y-auto py-4">
-            <ul className="space-y-1 px-2">
-              <SidebarItem
-                href="/dashboard"
-                icon={<FiHome />}
-                text="Dashboard"
-              />
-              <SidebarItem
-                href="/dashboard/nodes"
-                icon={<FiGlobe />}
-                text="Nodes"
-              />
-              <SidebarItem
-                href="/dashboard/performance"
-                icon={<FiActivity />}
-                text="Performance"
-              />
-              <SidebarItem
-                href="/dashboard/users"
-                icon={<FiUsers />}
-                text="Users"
-              />
-              <SidebarItem
-                href="/dashboard/settings"
-                icon={<FiSettings />}
-                text="Settings"
-              />
-            </ul>
-          </nav>
-        </div>
-      </aside>
+      <ClientSidebar />
 
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header />
@@ -59,27 +18,5 @@ export default function DashboardLayout({
         </main>
       </div>
     </div>
-  );
-}
-
-function SidebarItem({
-  href,
-  icon,
-  text,
-}: {
-  href: string;
-  icon: React.ReactNode;
-  text: string;
-}) {
-  return (
-    <li>
-      <a
-        href={href}
-        className="flex items-center px-4 py-2 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md transition-colors"
-      >
-        <span className="mr-3">{icon}</span>
-        <span>{text}</span>
-      </a>
-    </li>
   );
 }
