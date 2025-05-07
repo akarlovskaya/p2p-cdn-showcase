@@ -54,7 +54,7 @@ function SidebarItem({ href, icon, text }: SidebarItemProps) {
     <li>
       <Link
         href={href}
-        className="flex items-center px-4 py-2 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded-md transition-colors"
+        className="flex items-center px-4 py-2 text-gray-600 hover:bg-primary-50 hover:text-primary-600 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-full"
       >
         <span className="mr-3">{icon}</span>
         <span>{text}</span>
