@@ -1,7 +1,7 @@
 // Shared layout for all dashboard pages (dashboard-specific layout)
 import { SidebarProvider } from "../contexts/SidebarContext";
 import { Header } from "../components/header/Header";
-import ClientSidebar from "../components/Sidebar";
+import Sidebar from "../components/Sidebar";
 
 export default function DashboardLayout({
   children,
@@ -11,7 +11,7 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <div className="flex h-screen bg-gray-100">
-        <ClientSidebar />
+        <Sidebar />
 
         <div className="flex-1 flex flex-col overflow-hidden">
           <Header />
