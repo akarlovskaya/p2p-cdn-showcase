@@ -1,6 +1,6 @@
 "use client";
 import { FiMenu, FiBell, FiUser, FiX } from "react-icons/fi";
-import { useSidebar } from "../../contexts/SidebarContext";
+import { useSidebar } from "../../lib/contexts/sidebar-context";
 import UserDropdown from "./UserDropdown";
 
 export function Header() {

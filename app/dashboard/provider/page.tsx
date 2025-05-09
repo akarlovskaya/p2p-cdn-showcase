@@ -1,7 +1,15 @@
-import React from "react";
+"use client";
+import useProviderStats from "../../lib/api/provider";
 
-const Provider = () => {
-  return <div></div>;
-};
+export default function ProviderPage() {
+  const { data, isLoading } = useProviderStats();
 
-export default Provider;
+  if (isLoading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h1>Provider Dashboard</h1>
+      {/* Render client data */}
+    </div>
+  );
+}

@@ -1,5 +1,5 @@
 "use client";
-import { useSidebar } from "../contexts/SidebarContext";
+import { useSidebar } from "../lib/contexts/sidebar-context";
 import SidebarItems from "./SidebarItems";
 
 export default function ClientSidebar() {
