@@ -5,13 +5,13 @@ type UserRole = "client" | "provider" | null;
 type AuthContextType = {
   role: UserRole;
   setRole: (role: UserRole) => void;
-  // Add other auth-related state as needed
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [role, setRole] = useState<UserRole>(null);
+  const [role, setRole] = useState<UserRole>("client");
+  console.log("role from AuthProvider", role);
 
   return (
     <AuthContext.Provider value={{ role, setRole }}>

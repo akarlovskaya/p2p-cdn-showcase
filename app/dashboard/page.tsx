@@ -1,23 +1,23 @@
-// main dashboard content
-
-//import { StatsCard } from "../components/stats-card";
-import { FiGlobe, FiDownload, FiClock, FiUsers } from "react-icons/fi";
+"use client";
+import { useAuth } from "../lib/contexts/auth-context";
+import ClientDashboard from "../components/ClientDashboard";
+import ProviderDashboard from "../components/ProviderDashboard";
+import RoleSelector from "../components/RoleSelector";
 
 export default function DashboardPage() {
+  const { role } = useAuth();
+
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        StatsCard
-        {/* <StatsCard
-          title="Total Nodes"
-          value="1,234"
-          change="+12%"
-          isPositive={true}
-          icon={<FiGlobe />}
-        /> */}
-        {/* Other cards... */}
-      </div>
-      {/* Other sections... */}
+    <div className="relative min-h-screen">
+      {role === "client" && <ClientDashboard />}
+      {role === "provider" && <ProviderDashboard />}
+      {!role && (
+        <div className="flex items-center justify-center h-screen">
+          <p>Please select a role first</p>
+        </div>
+      )}
+
+      <RoleSelector />
     </div>
   );
 }

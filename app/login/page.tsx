@@ -1,4 +1,3 @@
-// pages/login.tsx
 "use client";
 import { useState } from "react";
 import Head from "next/head";
@@ -6,12 +5,10 @@ import Head from "next/head";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<"client" | "provider">("client");
+  const [uiRole, setUiRole] = useState<"client" | "provider">("client"); // Local UI state
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // For demo purposes, just redirect to dashboard
-    window.location.href = `/dashboard/${role}`;
+  const handleRoleChange = (newRole: "client" | "provider") => {
+    setUiRole(newRole);
   };
 
   return (
@@ -32,7 +29,7 @@ export default function LoginPage() {
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-6">
               <div>
                 <label
                   htmlFor="email"
@@ -82,9 +79,9 @@ export default function LoginPage() {
                 <div className="mt-1 flex rounded-md shadow-sm">
                   <button
                     type="button"
-                    onClick={() => setRole("client")}
+                    onClick={() => handleRoleChange("client")}
                     className={`flex-1 py-2 px-4 border rounded-l-md text-sm font-medium ${
-                      role === "client"
+                      uiRole === "client"
                         ? "bg-blue-100 border-primary text-primary-dark"
                         : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
                     }`}
@@ -93,9 +90,9 @@ export default function LoginPage() {
                   </button>
                   <button
                     type="button"
-                    onClick={() => setRole("provider")}
+                    onClick={() => handleRoleChange("provider")}
                     className={`flex-1 py-2 px-4 border rounded-r-md text-sm font-medium ${
-                      role === "provider"
+                      uiRole === "provider"
                         ? "bg-blue-100 border-primary text-primary-dark"
                         : "bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
                     }`}
@@ -155,10 +152,10 @@ export default function LoginPage() {
 
               <div className="mt-6">
                 <a
-                  href={`/dashboard/${role}`}
+                  href={`/dashboard`}
                   className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
-                  Continue as {role === "client" ? "Client" : "Provider"}
+                  Continue
                 </a>
               </div>
             </div>
