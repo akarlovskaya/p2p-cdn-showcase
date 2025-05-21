@@ -7,7 +7,7 @@ export default function ClientDashboard() {
   const { data } = useClientData();
 
   return (
-    <div className="text-gray-800">
+    <div>
       <h1>Client Dashboard</h1>
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>

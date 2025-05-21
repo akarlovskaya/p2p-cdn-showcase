@@ -2,6 +2,7 @@
 import { FiMenu, FiBell, FiUser, FiX } from "react-icons/fi";
 import { useSidebar } from "../../lib/contexts/sidebar-context";
 import UserDropdown from "./UserDropdown";
+import SearchBar from "./SearchBar";
 
 export function Header() {
   const { isOpen, toggleSidebar } = useSidebar();
@@ -9,10 +10,10 @@ export function Header() {
   return (
     <header className="bg-white shadow-sm">
       <div className="flex items-center justify-between px-4 py-3 sm:px-6">
-        <div className="flex items-center">
+        <div className="flex items-center md:hidden">
           <button
             onClick={toggleSidebar}
-            className="mr-4 text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 md:hidden"
+            className="mr-4 text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 "
             aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
           >
             {isOpen ? (
@@ -25,7 +26,8 @@ export function Header() {
             P2P CDN Dashboard
           </h1> */}
         </div>
-        <div className="flex items-center space-x-4">
+        <SearchBar />
+        <div className="flex items-center justify-around space-x-4">
           <button className="p-1 text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-full">
             <FiBell className="h-6 w-6" />
           </button>

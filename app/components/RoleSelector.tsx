@@ -10,13 +10,13 @@ export default function RoleSelector() {
       <div className="flex gap-2">
         <button
           onClick={() => setRole("client")}
-          className="px-3 py-1 bg-blue-500 text-white rounded"
+          className="px-3 py-1 bg-primary-dark text-white rounded"
         >
           Client
         </button>
         <button
           onClick={() => setRole("provider")}
-          className="px-3 py-1 bg-green-500 text-white rounded"
+          className="px-3 py-1 bg-secondary-dark text-white rounded"
         >
           Provider
         </button>
