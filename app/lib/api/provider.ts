@@ -7,7 +7,7 @@ async function fetchProviderStatData() {
 
   try {
     const res = await fetch("/api/providerStat");
-    console.log("Response status:", res.status); // Debug 2
+    console.log("Response status from provider:", res.status); // Debug 2
 
     if (!res.ok) {
       console.error("Response not OK:", await res.text());
@@ -24,13 +24,13 @@ async function fetchProviderStatData() {
 }
 
 export default function useProviderData() {
-  const { role } = useAuth(); // Destructure to avoid hook calls in render
+  const { user } = useAuth(); // Destructure to avoid hook calls in render
   console.log("fetchOverviewData", fetchProviderStatData());
 
   return useQuery({
     queryKey: ["provider-data"],
     queryFn: fetchProviderStatData,
-    enabled: role === "provider",
+    enabled: user?.role === "provider",
     //refetchOnMount: true, // Add this line
     //enabled: true, // ← Force enable for testing
   });

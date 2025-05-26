@@ -15,7 +15,7 @@ async function fetchOverviewData() {
     }
 
     const data = await res.json();
-    console.log("Parsed data:", data); // Debug 3
+    console.log("Parsed data from client:", data); // Debug 3
     return data;
   } catch (error) {
     console.error("Fetch failed:", error);
@@ -24,13 +24,13 @@ async function fetchOverviewData() {
 }
 
 export default function useClientData() {
-  const { role } = useAuth(); // Destructure to avoid hook calls in render
+  const { user } = useAuth(); // Destructure to avoid hook calls in render
   console.log("fetchOverviewData", fetchOverviewData());
 
   return useQuery({
     queryKey: ["client-data"],
     queryFn: fetchOverviewData,
-    enabled: role === "client",
+    enabled: user?.role === "client",
     //refetchOnMount: true, // Add this line
     //enabled: true, // ← Force enable for testing
   });

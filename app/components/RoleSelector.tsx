@@ -1,21 +1,28 @@
 "use client";
 import { useAuth } from "../lib/contexts/auth-context";
+import { useRouter } from "next/navigation";
 
 export default function RoleSelector() {
-  const { role, setRole } = useAuth();
+  const router = useRouter();
+  const { login } = useAuth();
+
+  const handleRoleSelect = (role: string, username: string) => {
+    login(username, role);
+    router.push(`/dashboard/${role}/${username}`);
+  };
 
   return (
     <div className="fixed bottom-4 right-4 p-4 bg-white shadow-lg rounded-lg">
-      <p className="mb-2 ">Current role: {role || "none"}</p>
+      <h3 className="mb-2 text-dark-light text-center">Select Demo Role</h3>
       <div className="flex gap-2">
         <button
-          onClick={() => setRole("client")}
+          onClick={() => handleRoleSelect("client", "patrick-simpson")}
           className="px-3 py-1 bg-primary-dark text-white rounded"
         >
           Client
         </button>
         <button
-          onClick={() => setRole("provider")}
+          onClick={() => handleRoleSelect("provider", "patrick-simpson")}
           className="px-3 py-1 bg-secondary-dark text-white rounded"
         >
           Provider

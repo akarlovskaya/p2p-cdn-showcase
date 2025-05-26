@@ -7,29 +7,43 @@ import {
 } from "react-icons/fi";
 import Link from "next/link";
 
-export default function SidebarItems() {
+type SidebarItemsProps = {
+  role?: string;
+  username?: string;
+};
+
+export default function SidebarItems({ role, username }: SidebarItemsProps) {
   return (
     <>
       <nav className="flex-1 overflow-y-auto py-4">
         <ul className="space-y-1 px-2">
-          <SidebarItem href="/dashboard" icon={<FiHome />} text="Dashboard" />
           <SidebarItem
-            href="/dashboard/nodes"
-            icon={<FiGlobe />}
-            text="Nodes"
+            href={`/dashboard/${role}/${username}`}
+            icon={<FiHome />}
+            text="Dashboard"
           />
           <SidebarItem
-            href="/dashboard/performance"
+            href={`/dashboard/${role}/overview/${username}`}
+            icon={<FiGlobe />}
+            text="Overview"
+          />
+          <SidebarItem
+            href={`/dashboard/${role}/performance/${username}`}
             icon={<FiActivity />}
             text="Performance"
           />
           <SidebarItem
-            href="/dashboard/users"
+            href={`/dashboard/${role}/storage/${username}`}
             icon={<FiUsers />}
-            text="Users"
+            text="Storage"
           />
           <SidebarItem
-            href="/dashboard/settings"
+            href={`/dashboard/${role}/activity/${username}`}
+            icon={<FiSettings />}
+            text="Activity"
+          />
+          <SidebarItem
+            href={`/dashboard/${role}/settings/${username}`}
             icon={<FiSettings />}
             text="Settings"
           />

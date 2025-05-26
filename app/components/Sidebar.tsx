@@ -2,8 +2,14 @@
 import { useSidebar } from "../lib/contexts/sidebar-context";
 import SidebarItems from "./SidebarItems";
 import Image from "next/image";
+import RoleSelector from "./RoleSelector";
 
-export default function ClientSidebar() {
+type ClientSidebarProps = {
+  role?: string;
+  username?: string;
+};
+
+export default function ClientSidebar({ role, username }: ClientSidebarProps) {
   const { isOpen, closeSidebar } = useSidebar();
 
   return (
@@ -33,8 +39,9 @@ export default function ClientSidebar() {
             />
             <h2 className="text-lg font-semibold ml-2">P2P CDN</h2>
           </div>
-          <SidebarItems />
+          <SidebarItems role={role} username={username} />
         </div>
+        <RoleSelector />
       </aside>
     </>
   );
