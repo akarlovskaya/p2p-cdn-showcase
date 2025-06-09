@@ -260,106 +260,186 @@ export const mockDataClient = {
   ],
 };
 
-export const mockDataClientOld = {
-  overview: {
-    currentBalance: 1300.0,
-    monthlySpending: [
-      {
-        month: "April",
-        actualSpend: 200.0,
-        savedAmount: 285.0,
-        savedPercentage: 58.8, // (285/(200+285))*100
-        traditionalEquivalent: 485.0,
-      },
-      {
-        month: "March",
-        actualSpend: 150.0,
-        savedAmount: 370.0,
-        savedPercentage: 71.2,
-        traditionalEquivalent: 520.0,
-      },
-      {
-        month: "February",
-        actualSpend: 750.0,
-        savedAmount: 155.0,
-        traditionalCost: 905.0, // 750 + 155
-        savedPercentage: 17.1, // (155 / 905) * 100
-      },
-      {
-        month: "January",
-        actualSpend: 300.0,
-        savedAmount: 155.0,
-        traditionalCost: 455.0,
-        savedPercentage: 34,
-      },
-    ],
-
-    savings: 405.0,
-    savingsPercentage: 90,
-    bandwidthUsed: 1200, // in GB
-    costPerGB: 0.03,
-    costPerRequest: 0.001,
-  },
-  performance: {
-    uptime: 99.98,
-    avgResponseTime: 142,
-    cacheHitRate: 87,
-    errorRate: 0.01,
-    totalRequests: 120000,
-    failedRequests: 12,
-    responseTimeChart: [
-      { date: "2023-05-01", value: 135 },
-      { date: "2023-05-02", value: 142 },
-      // ... more data points
-    ],
-  },
-  content: {
-    domains: [
-      {
-        name: "streaminghub.com",
-        bandwidth: 800,
-        requests: 85000,
-        cacheHitRate: 85,
-      },
-      {
-        name: "cloudstorage.net",
-        bandwidth: 400,
-        requests: 35000,
-        cacheHitRate: 89,
-      },
-      {
-        name: "officeapps.biz",
-        bandwidth: 320,
-        requests: 28000,
-        cacheHitRate: 90,
-      },
-    ],
-  },
-  billing: {
-    invoices: [
-      { id: "INV-2023-05", amount: 45.0, date: "2023-05-01", status: "paid" },
-      { id: "INV-2023-04", amount: 38.5, date: "2023-04-01", status: "paid" },
-    ],
-    usageHistory: [
-      { month: "2023-03", bandwidth: 800, requests: 90000 },
-      { month: "2023-04", bandwidth: 950, requests: 105000 },
-      { month: "2023-05", bandwidth: 1200, requests: 120000 },
-    ],
-  },
-  support: {
-    quickLinks: [
-      { title: "Connect Your Domain", url: "/docs/connect-domain" },
-      { title: "Cache Configuration Guide", url: "/docs/cache-config" },
-    ],
-    contact: {
-      email: "support@p2pcdn.com",
-      responseTime: "2 hours",
-    },
-  },
-};
-
 export const mockDataProvider = {
-  providerStat: {
-    currentBalance: 111.0,
-  },
+  months: [
+    {
+      month: "January",
+      overview: {
+        earningsSummary: {
+          totalEarnings: 185.5,
+          earningsFromStorage: 120.0,
+          earningsFromBandwidth: 65.5,
+        },
+        storageUsed: {
+          totalGB: 1420,
+          allocatedGB: 2000,
+          utilizationPercent: 71,
+        },
+        peersConnected: 248,
+      },
+      performance: {
+        uploadStats: {
+          totalGB: 8420,
+          avgDailyGB: 271.6,
+        },
+        downloadStats: {
+          totalGB: 3200,
+          avgDailyGB: 103.2,
+        },
+        reliabilityScore: 98.7,
+        bandwidthContribution: {
+          totalTB: 11.62,
+          percentOfNetwork: 3.2,
+        },
+      },
+      storage: {
+        contentBreakdown: [
+          {
+            type: "Video",
+            percent: 58,
+            totalGB: 823.6,
+          },
+          {
+            type: "Software",
+            percent: 22,
+            totalGB: 312.4,
+          },
+        ],
+        mostRequestedFiles: [
+          {
+            name: "popular-movie.mp4",
+            requests: 42800,
+            sizeGB: 8.2,
+          },
+        ],
+        autoPurgeSettings: {
+          enabled: true,
+          thresholdGB: 1800,
+          strategy: "LRU",
+        },
+      },
+      activity: {
+        earningsHistory: [
+          {
+            date: "2024-01-15",
+            amount: 92.75,
+            source: "Storage",
+          },
+        ],
+        payouts: [
+          {
+            date: "2024-01-31",
+            amount: 150.0,
+            method: "PayPal",
+          },
+        ],
+        nodeAlerts: [
+          {
+            date: "2024-01-22",
+            message: "High memory usage (92%)",
+            severity: "warning",
+          },
+        ],
+      },
+      settings: {
+        resourceLimits: {
+          maxStorageGB: 2000,
+          maxDailyBandwidthGB: 500,
+        },
+        bandwidthThrottling: {
+          enabled: false,
+          limitMbps: null,
+        },
+        payoutMethods: ["PayPal", "Bank Transfer"],
+      },
+    },
+    {
+      month: "February",
+      overview: {
+        earningsSummary: {
+          totalEarnings: 210.25,
+          earningsFromStorage: 135.0,
+          earningsFromBandwidth: 75.25,
+        },
+        storageUsed: {
+          totalGB: 1580,
+          allocatedGB: 2000,
+          utilizationPercent: 79,
+        },
+        peersConnected: 312,
+      },
+      performance: {
+        uploadStats: {
+          totalGB: 9210,
+          avgDailyGB: 328.9,
+        },
+        downloadStats: {
+          totalGB: 3800,
+          avgDailyGB: 135.7,
+        },
+        reliabilityScore: 99.1,
+        bandwidthContribution: {
+          totalTB: 13.01,
+          percentOfNetwork: 3.5,
+        },
+      },
+      storage: {
+        contentBreakdown: [
+          {
+            type: "Video",
+            percent: 62,
+            totalGB: 979.6,
+          },
+        ],
+        mostRequestedFiles: [
+          {
+            name: "game-patch.exe",
+            requests: 51200,
+            sizeGB: 4.8,
+          },
+        ],
+        autoPurgeSettings: {
+          enabled: true,
+          thresholdGB: 1800,
+          strategy: "LRU",
+        },
+      },
+      activity: {
+        nodeAlerts: [
+          {
+            date: "2024-02-14",
+            message: "Node offline for 2h (maintenance)",
+            severity: "info",
+          },
+        ],
+      },
+    },
+    {
+      month: "March",
+      overview: {
+        peersConnected: 287,
+      },
+      performance: {
+        reliabilityScore: 97.3,
+      },
+      storage: {
+        mostRequestedFiles: [
+          {
+            name: "live-event-stream.m3u8",
+            requests: 68700,
+            sizeGB: 12.4,
+          },
+        ],
+      },
+    },
+    {
+      month: "April",
+      settings: {
+        bandwidthThrottling: {
+          enabled: true,
+          limitMbps: 100,
+        },
+      },
+    },
+  ],
 };

@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { mockDataProvider } from "../../lib/mockData";
 
 export async function GET() {
-  const data = mockDataProvider.providerStat;
+  const data = mockDataProvider.months;
   console.log("API returning:", data); // Debug
   return NextResponse.json(data, {
     headers: {
