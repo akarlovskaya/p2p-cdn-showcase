@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { mockDataClient } from "../../lib/mockData";
 
 export async function GET() {
-  const data = mockDataClient.overview;
+  const data = mockDataClient.months;
   console.log("API returning:", data); // Debug 4
   return NextResponse.json(data, {
     headers: {

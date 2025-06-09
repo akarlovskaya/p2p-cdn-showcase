@@ -8,7 +8,7 @@ export default function RoleSelector() {
 
   const handleRoleSelect = (role: string, username: string) => {
     login(username, role);
-    router.push(`/dashboard/${role}/${username}`);
+    router.push(`/dashboard/${role}/overview/${username}`);
   };
 
   return (

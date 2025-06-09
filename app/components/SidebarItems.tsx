@@ -17,11 +17,11 @@ export default function SidebarItems({ role, username }: SidebarItemsProps) {
     <>
       <nav className="flex-1 overflow-y-auto py-4">
         <ul className="space-y-1 px-2">
-          <SidebarItem
+          {/* <SidebarItem
             href={`/dashboard/${role}/${username}`}
             icon={<FiHome />}
             text="Dashboard"
-          />
+          /> */}
           <SidebarItem
             href={`/dashboard/${role}/overview/${username}`}
             icon={<FiGlobe />}
