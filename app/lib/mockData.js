@@ -417,28 +417,218 @@ export const mockDataProvider = {
     {
       month: "March",
       overview: {
-        peersConnected: 287,
+        earningsSummary: {
+          totalEarnings: 198.3,
+          earningsFromStorage: 130.5,
+          earningsFromBandwidth: 67.8,
+        },
+        storageUsed: {
+          totalGB: 1350,
+          allocatedGB: 2000,
+          utilizationPercent: 67.5,
+        },
+        peersConnected: 231,
       },
       performance: {
-        reliabilityScore: 97.3,
+        uploadStats: {
+          totalGB: 7850,
+          avgDailyGB: 253.2,
+        },
+        downloadStats: {
+          totalGB: 2950,
+          avgDailyGB: 95.2,
+        },
+        reliabilityScore: 99.1,
+        bandwidthContribution: {
+          totalTB: 10.8,
+          percentOfNetwork: 2.9,
+        },
       },
       storage: {
-        mostRequestedFiles: [
+        contentBreakdown: [
           {
-            name: "live-event-stream.m3u8",
-            requests: 68700,
-            sizeGB: 12.4,
+            type: "Video",
+            percent: 55,
+            totalGB: 742.5,
+          },
+          {
+            type: "Software",
+            percent: 25,
+            totalGB: 337.5,
+          },
+          {
+            type: "Music",
+            percent: 12,
+            totalGB: 162.0,
           },
         ],
+        mostRequestedFiles: [
+          {
+            name: "hit-song-album.mp3",
+            requests: 38200,
+            sizeGB: 3.8,
+          },
+          {
+            name: "game-patch-v2.0.zip",
+            requests: 24500,
+            sizeGB: 5.1,
+          },
+        ],
+        autoPurgeSettings: {
+          enabled: true,
+          thresholdGB: 1700,
+          strategy: "LRU",
+        },
+      },
+      activity: {
+        earningsHistory: [
+          {
+            date: "2024-03-10",
+            amount: 65.2,
+            source: "Bandwidth",
+          },
+          {
+            date: "2024-03-20",
+            amount: 88.7,
+            source: "Storage",
+          },
+        ],
+        payouts: [
+          {
+            date: "2024-03-31",
+            amount: 180.0,
+            method: "PayPal",
+          },
+        ],
+        nodeAlerts: [
+          {
+            date: "2024-03-15",
+            message: "High CPU usage (85%)",
+            severity: "warning",
+          },
+        ],
+      },
+      settings: {
+        resourceLimits: {
+          maxStorageGB: 2000,
+          maxDailyBandwidthGB: 450,
+        },
+        bandwidthThrottling: {
+          enabled: true,
+          limitMbps: 80,
+        },
+        payoutMethods: ["PayPal", "Bank Transfer"],
       },
     },
     {
       month: "April",
-      settings: {
-        bandwidthThrottling: {
-          enabled: true,
-          limitMbps: 100,
+      overview: {
+        earningsSummary: {
+          totalEarnings: 212.8,
+          earningsFromStorage: 145.3,
+          earningsFromBandwidth: 67.5,
         },
+        storageUsed: {
+          totalGB: 1580,
+          allocatedGB: 2000,
+          utilizationPercent: 79,
+        },
+        peersConnected: 267,
+      },
+      performance: {
+        uploadStats: {
+          totalGB: 9120,
+          avgDailyGB: 304.0,
+        },
+        downloadStats: {
+          totalGB: 3850,
+          avgDailyGB: 128.3,
+        },
+        reliabilityScore: 97.9,
+        bandwidthContribution: {
+          totalTB: 12.97,
+          percentOfNetwork: 3.5,
+        },
+      },
+      storage: {
+        contentBreakdown: [
+          {
+            type: "Video",
+            percent: 62,
+            totalGB: 979.6,
+          },
+          {
+            type: "Software",
+            percent: 18,
+            totalGB: 284.4,
+          },
+          {
+            type: "Documents",
+            percent: 12,
+            totalGB: 189.6,
+          },
+        ],
+        mostRequestedFiles: [
+          {
+            name: "blockbuster-film.mp4",
+            requests: 51200,
+            sizeGB: 9.5,
+          },
+          {
+            name: "design-software.zip",
+            requests: 18700,
+            sizeGB: 4.2,
+          },
+        ],
+        autoPurgeSettings: {
+          enabled: true,
+          thresholdGB: 1900,
+          strategy: "FIFO",
+        },
+      },
+      activity: {
+        earningsHistory: [
+          {
+            date: "2024-04-05",
+            amount: 78.4,
+            source: "Bandwidth",
+          },
+          {
+            date: "2024-04-12",
+            amount: 92.1,
+            source: "Storage",
+          },
+        ],
+        payouts: [
+          {
+            date: "2024-04-30",
+            amount: 200.0,
+            method: "Bank Transfer",
+          },
+        ],
+        nodeAlerts: [
+          {
+            date: "2024-04-18",
+            message: "Storage nearing capacity (87%)",
+            severity: "warning",
+          },
+          {
+            date: "2024-04-22",
+            message: "Connection lost to 3 peers",
+            severity: "critical",
+          },
+        ],
+      },
+      settings: {
+        resourceLimits: {
+          maxStorageGB: 2000,
+          maxDailyBandwidthGB: 600,
+        },
+        bandwidthThrottling: {
+          enabled: false,
+          limitMbps: 0,
+        },
+        payoutMethods: ["PayPal", "Bank Transfer", "Crypto Wallet"],
       },
     },
   ],
