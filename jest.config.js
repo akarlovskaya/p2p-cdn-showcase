@@ -12,7 +12,8 @@ const customJestConfig = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
 
   // Use jsdom for browser environment simulation
-  testEnvironment: "jest-environment-jsdom",
+  // testEnvironment: "jest-environment-jsdom",
+  testEnvironment: "jsdom",
 
   // Handle module aliases (if you use them in next.config.js)
   moduleNameMapper: {

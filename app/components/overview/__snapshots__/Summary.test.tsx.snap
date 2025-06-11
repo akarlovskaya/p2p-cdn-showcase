@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="text-center"
+  >
+    <h2
+      class="text-2xl text-black font-bold mt-8 mb-2"
+    >
+      Total Balance in May
+    </h2>
+    <p
+      class="font-mono text-6xl text-black font-bold mb-4"
+    >
+      $1000
+    </p>
+  </div>
+</DocumentFragment>
+`;

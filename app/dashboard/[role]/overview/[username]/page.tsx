@@ -9,7 +9,6 @@ import Summary from "../../../../components/overview/Summary";
 
 export default function OverviewDashboard() {
   const { user } = useAuth();
-  // const [isLoading, setIsLoading] = useState(true);
   console.log("user", user);
   const userFirstName = user?.username.split("-")[0] || "";
   const capitalizedFirstName = userFirstName
@@ -19,10 +18,8 @@ export default function OverviewDashboard() {
 
   if (user?.role === "client") {
     fetchData = useClientData();
-    // setIsLoading(false);
   } else if (user?.role === "provider") {
     fetchData = useProviderData();
-    // setIsLoading(false);
   }
 
   const aprilData = fetchData?.data?.find(

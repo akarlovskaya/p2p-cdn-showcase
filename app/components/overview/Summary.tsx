@@ -3,11 +3,10 @@ import React from "react";
 type SummaryProps = {
   userRole: string;
   total: number;
-  currentMonth?: string;
-  isLoading?: boolean;
+  currentMonth: string;
 };
 
-function Summary({ userRole, total, isLoading, currentMonth }: SummaryProps) {
+function Summary({ userRole, total, currentMonth }: SummaryProps) {
   return (
     <div className="text-center">
       <h2 className="text-2xl text-black font-bold mt-8 mb-2">
