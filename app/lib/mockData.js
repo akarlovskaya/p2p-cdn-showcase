@@ -264,6 +264,7 @@ export const mockDataProvider = {
   months: [
     {
       month: "January",
+      currentBalance: 185.5,
       overview: {
         earningsSummary: {
           totalEarnings: 185.5,
@@ -355,6 +356,7 @@ export const mockDataProvider = {
     },
     {
       month: "February",
+      currentBalance: 210.25,
       overview: {
         earningsSummary: {
           totalEarnings: 210.25,
@@ -416,6 +418,7 @@ export const mockDataProvider = {
     },
     {
       month: "March",
+      currentBalance: 198.3,
       overview: {
         earningsSummary: {
           totalEarnings: 198.3,
@@ -522,6 +525,7 @@ export const mockDataProvider = {
     },
     {
       month: "April",
+      currentBalance: 212.8,
       overview: {
         earningsSummary: {
           totalEarnings: 212.8,
