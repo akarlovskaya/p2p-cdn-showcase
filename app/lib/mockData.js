@@ -1,13 +1,18 @@
+import { uptime } from "process";
+import { cache } from "react";
+
 export const mockDataClient = {
   months: [
     {
       month: "January",
       currentBalance: 1000.0,
-      spending: {
-        actualSpend: 300.0,
-        savedAmount: 420.0,
-        traditionalCost: 720.0,
-        savedPercentage: 58.3,
+      overview: {
+        spending: {
+          actualSpend: 300.0,
+          savedAmount: 420.0,
+          traditionalCost: 720.0,
+          savedPercentage: 58.3,
+        },
       },
       content: {
         domains: [
@@ -16,6 +21,18 @@ export const mockDataClient = {
             bandwidth: 800,
             requests: 85000,
             cacheHitRate: 85,
+          },
+          {
+            name: "cloudstorage.net",
+            bandwidth: 620,
+            requests: 65000,
+            cacheHitRate: 85,
+          },
+          {
+            name: "officeapps.biz",
+            bandwidth: 320,
+            requests: 32000,
+            cacheHitRate: 92,
           },
         ],
       },
@@ -77,11 +94,13 @@ export const mockDataClient = {
     {
       month: "February",
       currentBalance: 1100.0,
-      spending: {
-        actualSpend: 750.0,
-        savedAmount: 155.0,
-        traditionalCost: 905.0,
-        savedPercentage: 17.1,
+      overview: {
+        spending: {
+          actualSpend: 750.0,
+          savedAmount: 155.0,
+          traditionalCost: 905.0,
+          savedPercentage: 17.1,
+        },
       },
       content: {
         domains: [
@@ -138,11 +157,13 @@ export const mockDataClient = {
     {
       month: "March",
       currentBalance: 2000.0,
-      spending: {
-        actualSpend: 150.0,
-        savedAmount: 370.0,
-        traditionalCost: 520.0,
-        savedPercentage: 71.2,
+      overview: {
+        spending: {
+          actualSpend: 150.0,
+          savedAmount: 370.0,
+          traditionalCost: 520.0,
+          savedPercentage: 71.2,
+        },
       },
       content: {
         domains: [
@@ -199,19 +220,51 @@ export const mockDataClient = {
     {
       month: "April",
       currentBalance: 1300.0,
-      spending: {
-        actualSpend: 200.0,
-        savedAmount: 285.0,
-        traditionalCost: 485.0,
-        savedPercentage: 58.8,
+      overview: {
+        spending: {
+          actualSpend: 200.0,
+          savedAmount: 285.0,
+          traditionalCost: 485.0,
+          savedPercentage: 58.8,
+        },
+        insights: {
+          bandwidthTotal: 4.7,
+          bandwidthTrend: {
+            monthlyChange: 45, // % vs. March
+            trendDirection: "up",
+          },
+          requestsServed: 2550000,
+          requestsTrend: {
+            monthlyChange: 30, // % vs. March
+            trendDirection: "down",
+          },
+          cacheHitRate: 76,
+          cacheHitTrend: {
+            monthlyChange: 15, // % vs. March
+            trendDirection: "up",
+          },
+        },
+        uptime: 98.7, // percentage
       },
       content: {
         domains: [
           {
+            name: "streaminghub.com",
+            bandwidth: 2450,
+            requests: 1250000,
+            cacheHitRate: 78,
+          },
+          {
+            name: "cloudstorage.net",
+            bandwidth: 1820,
+            requests: 980000,
+            cacheHitRate: 85,
+          },
+          {
             name: "officeapps.biz",
-            bandwidth: 320,
-            requests: 28000,
-            cacheHitRate: 90,
+            bandwidth: 420,
+            requests: 320000,
+            cacheHitRate: 92,
           },
         ],
       },
@@ -362,6 +415,7 @@ export const mockDataProvider = {
           totalEarnings: 210.25,
           earningsFromStorage: 135.0,
           earningsFromBandwidth: 75.25,
+          momChangePercent: 7.8, // month-over-month change
         },
         storageUsed: {
           totalGB: 1580,
@@ -528,16 +582,15 @@ export const mockDataProvider = {
       currentBalance: 212.8,
       overview: {
         earningsSummary: {
-          totalEarnings: 212.8,
+          totalEarnings: 210.25,
+          momChangePercent: 7.8,
+        },
+        insights: {
+          storageUsed: 1580, // GB
           earningsFromStorage: 145.3,
           earningsFromBandwidth: 67.5,
         },
-        storageUsed: {
-          totalGB: 1580,
-          allocatedGB: 2000,
-          utilizationPercent: 79,
-        },
-        peersConnected: 267,
+        pickHoursOnline: 92, // %
       },
       performance: {
         uploadStats: {

@@ -69,6 +69,7 @@ interface Content {
 
 // Main data interface
 export default interface MonthlyData {
+  userRole: string; // "client" or "provider"
   month: string;
   currentBalance: number;
   spending: Spending;
