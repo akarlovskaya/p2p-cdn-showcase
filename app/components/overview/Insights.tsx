@@ -23,10 +23,11 @@ type ProviderInsightsProps = CommonInsightsProps & {
 export type InsightsProps = ClientInsightsProps | ProviderInsightsProps;
 
 export default function Insights(props: InsightsProps) {
+  console.log("Insights Props:", props);
   return (
     <>
       <h2 className="text-xl font-semibold mb-4">
-        {props.currentMonth} Insights
+        {props.currentMonth ? `${props.currentMonth} Insights` : "Insights"}
       </h2>
       <div className="flex flex-row items-center p-4">
         <div className="flex-none mr-2">
@@ -44,7 +45,10 @@ export default function Insights(props: InsightsProps) {
               {" "}
               <h3 className="text-xl font-bold ">Monthly Traffic Usage</h3>
               <p className="text-lg font-medium">
-                Bandwidth Used: {props.bandwidth}TB
+                {props.bandwidth !== undefined
+                  ? `Bandwidth Used: ${props.bandwidth} TB`
+                  : "Bandwidth Used: No data available"}
+                {/* Bandwidth Used: {props.bandwidth} TB */}
               </p>
             </>
           ) : (
@@ -52,7 +56,10 @@ export default function Insights(props: InsightsProps) {
               {" "}
               <h3 className="text-xl font-bold ">Storage Used</h3>
               <p className="text-lg font-medium">
-                Total: {props.storageUsed} GB
+                {props.storageUsed !== undefined
+                  ? `Total: ${props.storageUsed} GB`
+                  : "Total: No data available"}
+                {/* Total: {props.storageUsed} GB */}
               </p>
             </>
           )}
@@ -83,7 +90,10 @@ export default function Insights(props: InsightsProps) {
               {" "}
               <h3 className="text-xl font-bold ">Requests Served</h3>
               <p className="text-lg font-medium">
-                {props.requests} requests per week
+                {props.requests !== undefined
+                  ? `${props.requests} requests per week`
+                  : "No data available"}
+                {/* {props.requests} requests per week */}
               </p>
             </>
           ) : (
@@ -91,7 +101,10 @@ export default function Insights(props: InsightsProps) {
               {" "}
               <h3 className="text-xl font-bold ">Earnings From Storage</h3>
               <p className="text-lg font-medium">
-                CAD {props.earningsFromStorage}
+                {props.earningsFromStorage !== undefined
+                  ? `$${props.earningsFromStorage}`
+                  : "No data available"}
+                {/* ${props.earningsFromStorage} */}
               </p>
             </>
           )}
@@ -123,7 +136,10 @@ export default function Insights(props: InsightsProps) {
               {" "}
               <h3 className="text-xl font-bold ">Cache Hit Rate</h3>
               <p className="text-lg font-medium">
-                {props.cacheHitRate}% cache hits
+                {props.cacheHitRate !== undefined
+                  ? `${props.cacheHitRate}% cache hits`
+                  : "No data available"}
+                {/* {props.cacheHitRate}% cache hits */}
               </p>
             </>
           ) : (
@@ -131,7 +147,10 @@ export default function Insights(props: InsightsProps) {
               {" "}
               <h3 className="text-xl font-bold ">Earnings From Bandwidth</h3>
               <p className="text-lg font-medium">
-                CAD {props.earningsFromBandwidth}
+                {props.earningsFromBandwidth !== undefined
+                  ? `$${props.earningsFromBandwidth}`
+                  : "No data available"}
+                {/* ${props.earningsFromBandwidth} */}
               </p>
             </>
           )}
