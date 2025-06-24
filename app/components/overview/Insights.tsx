@@ -24,6 +24,8 @@ export type InsightsProps = ClientInsightsProps | ProviderInsightsProps;
 
 export default function Insights(props: InsightsProps) {
   console.log("Insights Props:", props);
+  // const formatedRequests = new Intl.NumberFormat('fr-CA').format(props.requests); // "2 550 000"
+
   return (
     <>
       <h2 className="text-xl font-semibold mb-4">
@@ -91,7 +93,9 @@ export default function Insights(props: InsightsProps) {
               <h3 className="text-xl font-bold ">Requests Served</h3>
               <p className="text-lg font-medium">
                 {props.requests !== undefined
-                  ? `${props.requests} requests per week`
+                  ? `${new Intl.NumberFormat("fr-CA").format(
+                      props.requests
+                    )} requests per week`
                   : "No data available"}
                 {/* {props.requests} requests per week */}
               </p>
