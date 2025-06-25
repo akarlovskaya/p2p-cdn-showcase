@@ -6,6 +6,7 @@ import useProviderData from "../../../../lib/api/provider";
 import { useEffect, useState } from "react";
 import MonthlyData from "../../../../types/dataClient";
 import Summary from "../../../../components/overview/Summary";
+import MonthlySpendings from "../../../../components/overview/MonthlySpendings";
 import Insights, {
   InsightsProps,
 } from "../../../../components/overview/Insights";
@@ -40,8 +41,15 @@ export default function OverviewDashboard() {
   const aprilData = userData?.find(
     (item: MonthlyData) => item.month === "April"
   );
+  const marchlData = userData?.find(
+    (item: MonthlyData) => item.month === "March"
+  );
+  const februarylData = userData?.find(
+    (item: MonthlyData) => item.month === "February"
+  );
 
-  console.log("aprilData", aprilData?.overview);
+  // console.log("aprilData", aprilData?.overview);
+  console.log("userData", userData);
 
   return isLoading ? (
     <p>Loading</p>
@@ -78,12 +86,13 @@ export default function OverviewDashboard() {
                 </div>
               </div>
 
-              {/* Monthly Spendings - 60% */}
-              <div className="h-[60%] min-h-[400px] bg-white rounded-lg shadow p-4 md:p-6">
-                <h2 className="text-lg font-semibold text-gray-800 mb-4">
-                  Monthly Spendings
-                </h2>
-                {/* Monthly Spendings content goes here */}
+              {/* Monthly Spendings/Earnings */}
+              <div className="h-[50%] min-h-[400px] bg-white border-black border-2 rounded-lg shadow p-4 md:p-6">
+                {user?.role === "client" ? (
+                  <MonthlySpendings userRole="client" userData={userData} />
+                ) : (
+                  <MonthlySpendings userRole="provider" userData={userData} />
+                )}
               </div>
 
               {/* Uptime Percentage - 20% */}

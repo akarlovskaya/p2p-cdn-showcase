@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { formattedMoney } from "../../lib/utilities";
 //import InsightsProps from "../../types/dataClient";
 
 type CommonInsightsProps = {
@@ -23,9 +24,6 @@ type ProviderInsightsProps = CommonInsightsProps & {
 export type InsightsProps = ClientInsightsProps | ProviderInsightsProps;
 
 export default function Insights(props: InsightsProps) {
-  console.log("Insights Props:", props);
-  // const formatedRequests = new Intl.NumberFormat('fr-CA').format(props.requests); // "2 550 000"
-
   return (
     <>
       <h2 className="text-xl font-semibold mb-4">
@@ -45,23 +43,21 @@ export default function Insights(props: InsightsProps) {
           {props.userRole === "client" ? (
             <>
               {" "}
-              <h3 className="text-xl font-bold ">Monthly Traffic Usage</h3>
-              <p className="text-lg font-medium">
+              <h3 className="text-lg font-bold ">Monthly Traffic Usage</h3>
+              <p className="font-medium">
                 {props.bandwidth !== undefined
                   ? `Bandwidth Used: ${props.bandwidth} TB`
                   : "Bandwidth Used: No data available"}
-                {/* Bandwidth Used: {props.bandwidth} TB */}
               </p>
             </>
           ) : (
             <>
               {" "}
-              <h3 className="text-xl font-bold ">Storage Used</h3>
-              <p className="text-lg font-medium">
+              <h3 className="text-lg font-bold ">Storage Used</h3>
+              <p className="font-medium">
                 {props.storageUsed !== undefined
                   ? `Total: ${props.storageUsed} GB`
                   : "Total: No data available"}
-                {/* Total: {props.storageUsed} GB */}
               </p>
             </>
           )}
@@ -90,25 +86,23 @@ export default function Insights(props: InsightsProps) {
           {props.userRole === "client" ? (
             <>
               {" "}
-              <h3 className="text-xl font-bold ">Requests Served</h3>
-              <p className="text-lg font-medium">
+              <h3 className="text-lg font-bold ">Requests Served</h3>
+              <p className="font-medium">
                 {props.requests !== undefined
                   ? `${new Intl.NumberFormat("fr-CA").format(
                       props.requests
                     )} requests per week`
                   : "No data available"}
-                {/* {props.requests} requests per week */}
               </p>
             </>
           ) : (
             <>
               {" "}
-              <h3 className="text-xl font-bold ">Earnings From Storage</h3>
-              <p className="text-lg font-medium">
+              <h3 className="text-lg font-bold ">Earnings From Storage</h3>
+              <p className="font-medium">
                 {props.earningsFromStorage !== undefined
-                  ? `$${props.earningsFromStorage}`
+                  ? formattedMoney(props.earningsFromStorage)
                   : "No data available"}
-                {/* ${props.earningsFromStorage} */}
               </p>
             </>
           )}
@@ -138,23 +132,21 @@ export default function Insights(props: InsightsProps) {
           {props.userRole === "client" ? (
             <>
               {" "}
-              <h3 className="text-xl font-bold ">Cache Hit Rate</h3>
-              <p className="text-lg font-medium">
+              <h3 className="text-lg font-bold ">Cache Hit Rate</h3>
+              <p className="font-medium">
                 {props.cacheHitRate !== undefined
                   ? `${props.cacheHitRate}% cache hits`
                   : "No data available"}
-                {/* {props.cacheHitRate}% cache hits */}
               </p>
             </>
           ) : (
             <>
               {" "}
-              <h3 className="text-xl font-bold ">Earnings From Bandwidth</h3>
-              <p className="text-lg font-medium">
+              <h3 className="text-lg font-bold ">Earnings From Bandwidth</h3>
+              <p className="font-medium">
                 {props.earningsFromBandwidth !== undefined
-                  ? `$${props.earningsFromBandwidth}`
+                  ? formattedMoney(props.earningsFromBandwidth)
                   : "No data available"}
-                {/* ${props.earningsFromBandwidth} */}
               </p>
             </>
           )}
