@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { formattedMoney } from "../../lib/utilities";
+import DoughnutChart from "../ui/DoughnutChart";
 
 function MonthlySpendings(props) {
   console.log("MonthlySpendings Props:", props.userData);
@@ -16,7 +17,7 @@ function MonthlySpendings(props) {
             ?.slice(-3)
             .reverse()
             .map((item) => (
-              <div key={item.month} className="flex flex-row items-center p-4">
+              <div key={item.month} className="flex flex-row items-center pb-4">
                 <div className="flex-none mr-2">
                   <Image
                     src="/images/doc-icon.jpg"
@@ -33,8 +34,16 @@ function MonthlySpendings(props) {
                     {formattedMoney(item?.overview?.spending?.actualSpend)}
                   </p>
                 </div>
-                <div className="flex-none">
-                  <p>Progress bar</p>
+                <div className="flex-none w-28 h-20">
+                  <DoughnutChart
+                    savedPercentage={item?.overview?.spending?.savedPercentage}
+                  />
+                </div>
+                <div className="flex-none text-center">
+                  <p className="font-bold">
+                    Saved* <br></br>
+                    {formattedMoney(item?.overview?.spending?.savedAmount)}
+                  </p>
                 </div>
               </div>
             ))}
