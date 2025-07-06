@@ -37,7 +37,7 @@ Chart.register({
   },
 });
 
-const DoughnutChart = ({ savedPercentage }) => {
+const DoughnutChart = ({ savedPercentage }: { savedPercentage?: number }) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
@@ -98,7 +98,7 @@ const DoughnutChart = ({ savedPercentage }) => {
     };
   }, [savedPercentage]);
 
-  return <canvas ref={chartRef} />;
+  return <canvas data-testid="doughnut-chart" ref={chartRef} />;
 };
 
 export default DoughnutChart;

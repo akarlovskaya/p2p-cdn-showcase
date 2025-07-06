@@ -321,6 +321,10 @@ export const mockDataProvider = {
       overview: {
         earningsSummary: {
           totalEarnings: 185.5,
+          momChangePercent: 5.2,
+        },
+        insights: {
+          storageUsed: 1420,
           earningsFromStorage: 120.0,
           earningsFromBandwidth: 65.5,
         },
@@ -330,6 +334,7 @@ export const mockDataProvider = {
           utilizationPercent: 71,
         },
         peersConnected: 248,
+        pickHoursOnline: 89,
       },
       performance: {
         uploadStats: {
@@ -358,12 +363,22 @@ export const mockDataProvider = {
             percent: 22,
             totalGB: 312.4,
           },
+          {
+            type: "Documents",
+            percent: 8,
+            totalGB: 113.6,
+          },
         ],
         mostRequestedFiles: [
           {
             name: "popular-movie.mp4",
             requests: 42800,
             sizeGB: 8.2,
+          },
+          {
+            name: "office-suite.iso",
+            requests: 21500,
+            sizeGB: 4.5,
           },
         ],
         autoPurgeSettings: {
@@ -378,6 +393,11 @@ export const mockDataProvider = {
             date: "2024-01-15",
             amount: 92.75,
             source: "Storage",
+          },
+          {
+            date: "2024-01-25",
+            amount: 42.3,
+            source: "Bandwidth",
           },
         ],
         payouts: [
@@ -413,9 +433,12 @@ export const mockDataProvider = {
       overview: {
         earningsSummary: {
           totalEarnings: 210.25,
+          momChangePercent: 13.4,
+        },
+        insights: {
+          storageUsed: 1580,
           earningsFromStorage: 135.0,
           earningsFromBandwidth: 75.25,
-          momChangePercent: 7.8, // month-over-month change
         },
         storageUsed: {
           totalGB: 1580,
@@ -423,6 +446,7 @@ export const mockDataProvider = {
           utilizationPercent: 79,
         },
         peersConnected: 312,
+        pickHoursOnline: 91,
       },
       performance: {
         uploadStats: {
@@ -446,12 +470,27 @@ export const mockDataProvider = {
             percent: 62,
             totalGB: 979.6,
           },
+          {
+            type: "Software",
+            percent: 20,
+            totalGB: 316.0,
+          },
+          {
+            type: "Music",
+            percent: 10,
+            totalGB: 158.0,
+          },
         ],
         mostRequestedFiles: [
           {
             name: "game-patch.exe",
             requests: 51200,
             sizeGB: 4.8,
+          },
+          {
+            name: "music-album.zip",
+            requests: 28700,
+            sizeGB: 3.2,
           },
         ],
         autoPurgeSettings: {
@@ -461,13 +500,48 @@ export const mockDataProvider = {
         },
       },
       activity: {
+        earningsHistory: [
+          {
+            date: "2024-02-10",
+            amount: 68.5,
+            source: "Storage",
+          },
+          {
+            date: "2024-02-20",
+            amount: 66.5,
+            source: "Bandwidth",
+          },
+        ],
+        payouts: [
+          {
+            date: "2024-02-29",
+            amount: 180.0,
+            method: "Bank Transfer",
+          },
+        ],
         nodeAlerts: [
           {
             date: "2024-02-14",
             message: "Node offline for 2h (maintenance)",
             severity: "info",
           },
+          {
+            date: "2024-02-21",
+            message: "High network latency detected",
+            severity: "warning",
+          },
         ],
+      },
+      settings: {
+        resourceLimits: {
+          maxStorageGB: 2000,
+          maxDailyBandwidthGB: 550,
+        },
+        bandwidthThrottling: {
+          enabled: true,
+          limitMbps: 100,
+        },
+        payoutMethods: ["PayPal", "Bank Transfer"],
       },
     },
     {
@@ -476,6 +550,10 @@ export const mockDataProvider = {
       overview: {
         earningsSummary: {
           totalEarnings: 198.3,
+          momChangePercent: -5.7,
+        },
+        insights: {
+          storageUsed: 1350,
           earningsFromStorage: 130.5,
           earningsFromBandwidth: 67.8,
         },
@@ -485,6 +563,7 @@ export const mockDataProvider = {
           utilizationPercent: 67.5,
         },
         peersConnected: 231,
+        pickHoursOnline: 92,
       },
       performance: {
         uploadStats: {
@@ -518,6 +597,11 @@ export const mockDataProvider = {
             percent: 12,
             totalGB: 162.0,
           },
+          {
+            type: "Documents",
+            percent: 5,
+            totalGB: 67.5,
+          },
         ],
         mostRequestedFiles: [
           {
@@ -529,6 +613,11 @@ export const mockDataProvider = {
             name: "game-patch-v2.0.zip",
             requests: 24500,
             sizeGB: 5.1,
+          },
+          {
+            name: "tech-report.pdf",
+            requests: 18200,
+            sizeGB: 0.8,
           },
         ],
         autoPurgeSettings: {
@@ -549,6 +638,11 @@ export const mockDataProvider = {
             amount: 88.7,
             source: "Storage",
           },
+          {
+            date: "2024-03-25",
+            amount: 44.4,
+            source: "Bandwidth",
+          },
         ],
         payouts: [
           {
@@ -563,6 +657,11 @@ export const mockDataProvider = {
             message: "High CPU usage (85%)",
             severity: "warning",
           },
+          {
+            date: "2024-03-28",
+            message: "Storage optimization completed",
+            severity: "info",
+          },
         ],
       },
       settings: {
@@ -574,7 +673,7 @@ export const mockDataProvider = {
           enabled: true,
           limitMbps: 80,
         },
-        payoutMethods: ["PayPal", "Bank Transfer"],
+        payoutMethods: ["PayPal", "Bank Transfer", "Crypto Wallet"],
       },
     },
     {
@@ -586,11 +685,11 @@ export const mockDataProvider = {
           momChangePercent: 7.8,
         },
         insights: {
-          storageUsed: 1580, // GB
+          storageUsed: 1580,
           earningsFromStorage: 145.3,
           earningsFromBandwidth: 67.5,
         },
-        pickHoursOnline: 92, // %
+        pickHoursOnline: 92,
       },
       performance: {
         uploadStats: {

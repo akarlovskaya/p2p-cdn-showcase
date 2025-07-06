@@ -35,13 +35,18 @@ function MonthlySpendings(props) {
                   </p>
                 </div>
                 <div className="flex-none w-28 h-20">
-                  <DoughnutChart
-                    savedPercentage={item?.overview?.spending?.savedPercentage}
-                  />
+                  {item?.overview?.spending?.savedPercentage !== undefined && (
+                    <DoughnutChart
+                      savedPercentage={
+                        item?.overview?.spending?.savedPercentage
+                      }
+                    />
+                  )}
                 </div>
                 <div className="flex-none text-center">
+                  <p className="font-bold">Saved*</p>
                   <p className="font-bold">
-                    Saved* <br></br>
+                    {/* Saved* <br></br> */}
                     {formattedMoney(item?.overview?.spending?.savedAmount)}
                   </p>
                 </div>
