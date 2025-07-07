@@ -3,11 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../contexts/auth-context";
 
 async function fetchProviderStatData() {
-  console.log("Fetch function executing"); // Debug 1
+  // console.log("Fetch function executing"); // Debug 1
 
   try {
     const res = await fetch("/api/providerStat");
-    console.log("Response status from provider:", res.status); // Debug 2
+    // console.log("Response status from provider:", res.status); // Debug 2
 
     if (!res.ok) {
       console.error("Response not OK:", await res.text());
@@ -15,7 +15,7 @@ async function fetchProviderStatData() {
     }
 
     const data = await res.json();
-    console.log("Parsed data:", data); // Debug 3
+    // console.log("Parsed data:", data); // Debug 3
     return data;
   } catch (error) {
     console.error("Fetch failed:", error);
@@ -25,7 +25,7 @@ async function fetchProviderStatData() {
 
 export default function useProviderData() {
   const { user } = useAuth(); // Destructure to avoid hook calls in render
-  console.log("fetchOverviewData", fetchProviderStatData());
+  // console.log("fetchOverviewData", fetchProviderStatData());
 
   return useQuery({
     queryKey: ["provider-data"],

@@ -11,6 +11,7 @@ import UptimePercentage from "../../../../components/overview/UptimePercentage";
 import Insights, {
   InsightsProps,
 } from "../../../../components/overview/Insights";
+import BandwidthUsed from "../../../../components/overview/BandwidthUsed";
 
 export default function OverviewDashboard() {
   const { user } = useAuth();
@@ -31,10 +32,10 @@ export default function OverviewDashboard() {
   useEffect(() => {
     if (user?.role === "client") {
       setUserData(fetchClientData?.data || null);
-      console.log("Client Data:", userData);
+      // console.log("Client Data:", userData);
     } else {
       setUserData(fetchProviderData?.data || null);
-      console.log("providerData Data:", userData);
+      // console.log("providerData Data:", userData);
     }
     setIsLoading(false);
   }, [user?.role, fetchClientData, fetchProviderData]);
@@ -59,11 +60,11 @@ export default function OverviewDashboard() {
       <h1 className="text-2xl font-bold mb-6">
         Hello{`, ${capitalizedFirstName}`}
       </h1>
-      <div className="grid grid-cols-1 gap-y-12 lg:grid-cols-2 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 gap-y-12 md:gap-y-12 xl:grid-cols-2 gap-4 md:gap-6">
         {user && (
           <>
             {/* First Column */}
-            <div className="space-y-4 md:space-y-6">
+            <div className="space-y-4 md:space-y-5">
               {/* Summary - 30% */}
               <div className="h-[30%] min-h-[200px] bg-secondary border-black border-2 rounded-lg p-4 md:p-6 relative overflow-hidden">
                 {/* Background Image */}
@@ -113,9 +114,9 @@ export default function OverviewDashboard() {
             </div>
 
             {/* Second Column */}
-            <div className="space-y-4 md:space-y-6">
+            <div className="space-y-4 md:space-y-5">
               {/* Insights of the month - 50% */}
-              <div className="h-[50%] min-h-[200px] bg-white border-black border-2 rounded-lg shadow p-4 md:p-6">
+              <div className="h-[50%] xl:h-[40%] bg-white border-black border-2 rounded-lg shadow p-4 md:p-6">
                 {user?.role === "client" ? (
                   <Insights
                     userRole="client"
@@ -140,11 +141,12 @@ export default function OverviewDashboard() {
               </div>
 
               {/* Bandwidth Used per Domain - 50% */}
-              <div className="h-[50%] min-h-[300px] bg-white rounded-lg shadow p-4 md:p-6">
-                <h2 className="text-lg font-semibold text-gray-800 mb-4">
-                  Bandwidth Used per Domain
-                </h2>
-                {/* Bandwidth content goes here */}
+              <div className="h-[50%] xl:h-[50%] bg-white border-black border-2 rounded-lg shadow p-4 md:p-6">
+                {user?.role === "client" ? (
+                  <BandwidthUsed userData={userData} />
+                ) : (
+                  <p>Provider view</p>
+                )}
               </div>
             </div>
           </>

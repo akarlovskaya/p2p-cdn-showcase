@@ -3,11 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../contexts/auth-context";
 
 async function fetchOverviewData() {
-  console.log("Fetch function executing"); // Debug 1
+  // console.log("Fetch function executing"); // Debug 1
 
   try {
     const res = await fetch("/api/overview");
-    console.log("Response status:", res.status); // Debug 2
+    // console.log("Response status:", res.status); // Debug 2
 
     if (!res.ok) {
       console.error("Response not OK:", await res.text());
@@ -15,7 +15,7 @@ async function fetchOverviewData() {
     }
 
     const data = await res.json();
-    console.log("Parsed data from client:", data); // Debug 3
+    // console.log("Parsed data from client:", data); // Debug 3
     return data;
   } catch (error) {
     console.error("Fetch failed:", error);

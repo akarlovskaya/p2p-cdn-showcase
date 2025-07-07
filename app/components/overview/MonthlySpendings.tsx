@@ -4,7 +4,7 @@ import { formattedMoney } from "../../lib/utilities";
 import DoughnutChart from "../ui/DoughnutChart";
 
 function MonthlySpendings(props) {
-  console.log("MonthlySpendings Props:", props.userData);
+  // console.log("MonthlySpendings Props:", props.userData);
   const { userData } = props;
   return (
     <>

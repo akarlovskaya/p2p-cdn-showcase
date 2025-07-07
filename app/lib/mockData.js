@@ -106,9 +106,21 @@ export const mockDataClient = {
         domains: [
           {
             name: "streaminghub.com",
-            bandwidth: 820,
-            requests: 90000,
-            cacheHitRate: 84,
+            bandwidth: 2300,
+            requests: 1180000,
+            cacheHitRate: 76,
+          },
+          {
+            name: "cloudstorage.net",
+            bandwidth: 1750,
+            requests: 950000,
+            cacheHitRate: 83,
+          },
+          {
+            name: "officeapps.biz",
+            bandwidth: 400,
+            requests: 310000,
+            cacheHitRate: 91,
           },
         ],
       },
@@ -168,10 +180,22 @@ export const mockDataClient = {
       content: {
         domains: [
           {
+            name: "streaminghub.com",
+            bandwidth: 2380,
+            requests: 1220000,
+            cacheHitRate: 77,
+          },
+          {
             name: "cloudstorage.net",
-            bandwidth: 450,
-            requests: 38000,
-            cacheHitRate: 88,
+            bandwidth: 1780,
+            requests: 965000,
+            cacheHitRate: 84,
+          },
+          {
+            name: "officeapps.biz",
+            bandwidth: 410,
+            requests: 315000,
+            cacheHitRate: 91.5,
           },
         ],
       },
@@ -250,21 +274,21 @@ export const mockDataClient = {
         domains: [
           {
             name: "streaminghub.com",
-            bandwidth: 2450,
-            requests: 1250000,
-            cacheHitRate: 78,
+            bandwidth: 2300,
+            requests: 1180000,
+            cacheHitRate: 76,
           },
           {
             name: "cloudstorage.net",
-            bandwidth: 1820,
-            requests: 980000,
-            cacheHitRate: 85,
+            bandwidth: 1750,
+            requests: 950000,
+            cacheHitRate: 83,
           },
           {
             name: "officeapps.biz",
-            bandwidth: 420,
-            requests: 320000,
-            cacheHitRate: 92,
+            bandwidth: 400,
+            requests: 310000,
+            cacheHitRate: 91,
           },
         ],
       },
