@@ -70,7 +70,7 @@ describe("MonthlySpendings Component", () => {
 
   describe("DoughnutChart", () => {
     it("renders canvas when data is provided", () => {
-      render(<DoughnutChart savedPercentage={50} />);
+      render(<DoughnutChart percentage={50} />);
       expect(screen.getByTestId("doughnut-chart")).toBeInTheDocument();
     });
   });
