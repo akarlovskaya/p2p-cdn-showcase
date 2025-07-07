@@ -37,7 +37,7 @@ Chart.register({
   },
 });
 
-const DoughnutChart = ({ savedPercentage }: { savedPercentage?: number }) => {
+const DoughnutChart = ({ percentage }: { percentage?: number }) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
@@ -56,7 +56,7 @@ const DoughnutChart = ({ savedPercentage }: { savedPercentage?: number }) => {
           //   labels: ["Saved", "Remaining"],
           datasets: [
             {
-              data: [savedPercentage, 100 - savedPercentage],
+              data: [percentage, 100 - percentage],
               backgroundColor: [
                 "#2F86A6", // Color for saved portion
                 "#ccc", // Color for remaining portion
@@ -81,7 +81,7 @@ const DoughnutChart = ({ savedPercentage }: { savedPercentage?: number }) => {
               },
             },
             doughnutCenterText: {
-              text: `${savedPercentage}%`,
+              text: `${percentage}%`,
               color: "#000",
               fontStyle: "bold",
             },
@@ -96,7 +96,7 @@ const DoughnutChart = ({ savedPercentage }: { savedPercentage?: number }) => {
         chartInstance.current.destroy();
       }
     };
-  }, [savedPercentage]);
+  }, [percentage]);
 
   return <canvas data-testid="doughnut-chart" ref={chartRef} />;
 };

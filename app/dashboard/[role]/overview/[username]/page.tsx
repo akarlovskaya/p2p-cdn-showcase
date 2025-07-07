@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import MonthlyData from "../../../../types/dataClient";
 import Summary from "../../../../components/overview/Summary";
 import MonthlySpendings from "../../../../components/overview/MonthlySpendings";
+import UptimePercentage from "../../../../components/overview/UptimePercentage";
 import Insights, {
   InsightsProps,
 } from "../../../../components/overview/Insights";
@@ -58,7 +59,7 @@ export default function OverviewDashboard() {
       <h1 className="text-2xl font-bold mb-6">
         Hello{`, ${capitalizedFirstName}`}
       </h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 gap-y-12 lg:grid-cols-2 gap-4 md:gap-6">
         {user && (
           <>
             {/* First Column */}
@@ -96,18 +97,25 @@ export default function OverviewDashboard() {
               </div>
 
               {/* Uptime Percentage - 20% */}
-              <div className="h-[20%] min-h-[150px] bg-white rounded-lg shadow p-4 md:p-6">
-                <h2 className="text-lg font-semibold text-gray-800 mb-4">
-                  Uptime Percentage
-                </h2>
-                {/* Uptime Percentage content goes here */}
+              <div className="h-[18%] min-h-[100px] bg-white border-black border-2 rounded-lg shadow p-4 md:p-6">
+                {user?.role === "client" ? (
+                  <UptimePercentage
+                    userRole="client"
+                    uptime={aprilData?.overview?.uptime}
+                  />
+                ) : (
+                  <UptimePercentage
+                    userRole="provider"
+                    uptime={aprilData?.overview?.pickHoursOnline}
+                  />
+                )}
               </div>
             </div>
 
             {/* Second Column */}
             <div className="space-y-4 md:space-y-6">
               {/* Insights of the month - 50% */}
-              <div className="h-[50%] min-h-[300px] bg-white border-black border-2 rounded-lg shadow p-4 md:p-6">
+              <div className="h-[50%] min-h-[200px] bg-white border-black border-2 rounded-lg shadow p-4 md:p-6">
                 {user?.role === "client" ? (
                   <Insights
                     userRole="client"

@@ -37,9 +37,7 @@ function MonthlySpendings(props) {
                 <div className="flex-none w-28 h-20">
                   {item?.overview?.spending?.savedPercentage !== undefined && (
                     <DoughnutChart
-                      savedPercentage={
-                        item?.overview?.spending?.savedPercentage
-                      }
+                      percentage={item?.overview?.spending?.savedPercentage}
                     />
                   )}
                 </div>
