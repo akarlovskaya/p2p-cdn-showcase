@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../contexts/auth-context";
 
-async function fetchOverviewData() {
+export async function fetchOverviewData() {
   // console.log("Fetch function executing"); // Debug 1
 
   try {
@@ -28,7 +28,7 @@ export default function useClientData() {
   console.log("fetchOverviewData", fetchOverviewData());
 
   return useQuery({
-    queryKey: ["client-data"],
+    queryKey: ["client-data", user?.role],
     queryFn: fetchOverviewData,
     enabled: user?.role === "client",
     //refetchOnMount: true, // Add this line

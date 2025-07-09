@@ -8,22 +8,22 @@ import MonthlyData from "../../../../types/dataClient";
 import Summary from "../../../../components/overview/Summary";
 import MonthlySpendings from "../../../../components/overview/MonthlySpendings";
 import UptimePercentage from "../../../../components/overview/UptimePercentage";
-import Insights, {
-  InsightsProps,
-} from "../../../../components/overview/Insights";
+import Insights from "../../../../components/overview/Insights";
 import BandwidthUsed from "../../../../components/overview/BandwidthUsed";
+import QuickActionsAlerts from "../../../../components/overview/QuickActionsAlerts";
 
 export default function OverviewDashboard() {
   const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
-  const [userData, setUserData] = useState(null);
-  // const [providerData, setProviderData] = useState(null);
+  const [clientData, setClientData] = useState(null);
+  const [providerData, setProviderData] = useState(null);
+  let aprilData;
 
   // Call the hooks at the top level
-  const fetchClientData = useClientData();
-  const fetchProviderData = useProviderData();
+  const fetchClientData = user?.role === "client" ? useClientData() : null;
+  const fetchProviderData =
+    user?.role === "provider" ? useProviderData() : null;
 
-  console.log("user", user);
   const userFirstName = user?.username.split("-")[0] || "";
   const capitalizedFirstName = userFirstName
     ? userFirstName[0].toUpperCase() + userFirstName.slice(1)
@@ -31,27 +31,21 @@ export default function OverviewDashboard() {
 
   useEffect(() => {
     if (user?.role === "client") {
-      setUserData(fetchClientData?.data || null);
-      // console.log("Client Data:", userData);
-    } else {
-      setUserData(fetchProviderData?.data || null);
-      // console.log("providerData Data:", userData);
+      setClientData(fetchClientData?.data || null);
+      setIsLoading(false);
+    } else if (user?.role === "provider") {
+      setProviderData(fetchProviderData.data || null);
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }, [user?.role, fetchClientData, fetchProviderData]);
 
-  const aprilData = userData?.find(
-    (item: MonthlyData) => item.month === "April"
-  );
-  const marchlData = userData?.find(
-    (item: MonthlyData) => item.month === "March"
-  );
-  const februarylData = userData?.find(
-    (item: MonthlyData) => item.month === "February"
-  );
-
-  // console.log("aprilData", aprilData?.overview);
-  console.log("userData", userData);
+  if (user?.role === "client") {
+    aprilData = clientData?.find((item: MonthlyData) => item.month === "April");
+  } else if (user?.role === "provider") {
+    aprilData = providerData?.find(
+      (item: MonthlyData) => item.month === "April"
+    );
+  }
 
   return isLoading ? (
     <p>Loading</p>
@@ -91,9 +85,12 @@ export default function OverviewDashboard() {
               {/* Monthly Spendings/Earnings */}
               <div className="h-[50%] min-h-[400px] bg-white border-black border-2 rounded-lg shadow p-4 md:p-6">
                 {user?.role === "client" ? (
-                  <MonthlySpendings userRole="client" userData={userData} />
+                  <MonthlySpendings userRole="client" userData={clientData} />
                 ) : (
-                  <MonthlySpendings userRole="provider" userData={userData} />
+                  <MonthlySpendings
+                    userRole="provider"
+                    userData={providerData}
+                  />
                 )}
               </div>
 
@@ -140,12 +137,12 @@ export default function OverviewDashboard() {
                 )}
               </div>
 
-              {/* Bandwidth Used per Domain - 50% */}
+              {/* Bandwidth Used per Domain and QuickActionsAlerts */}
               <div className="h-[50%] xl:h-[50%] bg-white border-black border-2 rounded-lg shadow p-4 md:p-6">
                 {user?.role === "client" ? (
-                  <BandwidthUsed userData={userData} />
+                  <BandwidthUsed userData={clientData} />
                 ) : (
-                  <p>Provider view</p>
+                  <QuickActionsAlerts />
                 )}
               </div>
             </div>

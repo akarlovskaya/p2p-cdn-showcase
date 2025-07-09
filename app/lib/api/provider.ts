@@ -2,7 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../contexts/auth-context";
 
-async function fetchProviderStatData() {
+export async function fetchProviderStatData() {
   // console.log("Fetch function executing"); // Debug 1
 
   try {
@@ -28,7 +28,7 @@ export default function useProviderData() {
   // console.log("fetchOverviewData", fetchProviderStatData());
 
   return useQuery({
-    queryKey: ["provider-data"],
+    queryKey: ["provider-data", user?.role],
     queryFn: fetchProviderStatData,
     enabled: user?.role === "provider",
     //refetchOnMount: true, // Add this line

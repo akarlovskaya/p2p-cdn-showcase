@@ -25,6 +25,7 @@ ChartJS.register(
 );
 
 export default function BandwidthUsed({ userData }) {
+  console.log("BandwidthUsed COMP userData", userData);
   if (!userData) {
     return <p>Loading data</p>;
   }
@@ -35,12 +36,12 @@ export default function BandwidthUsed({ userData }) {
     labels: userData.map((entry) => entry.month), // ['January', 'February', 'March', 'April']
 
     // Y-axis datasets (one line per domain)
-    datasets: userData[0].content.domains.map((domain) => ({
+    datasets: userData[0].content?.domains?.map((domain) => ({
       label: domain.name,
       // Get bandwidth for this domain across all months
       data: userData.map(
         (monthData) =>
-          monthData.content.domains.find((d) => d.name === domain.name)
+          monthData.content?.domains.find((d) => d.name === domain.name)
             ?.bandwidth || 0
       ),
       borderColor: {
