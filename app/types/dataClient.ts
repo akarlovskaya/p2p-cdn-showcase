@@ -1,8 +1,28 @@
+import { BaseMonth } from "./baseMonth";
+
 interface Spending {
   actualSpend: number;
   savedAmount: number;
   traditionalCost: number;
   savedPercentage: number;
+}
+
+interface Insights {
+  bandwidthTotal: number;
+  bandwidthTrend: {
+    monthlyChange: number;
+    trendDirection: "up" | "down";
+  };
+  requestsServed: number;
+  requestsTrend: {
+    monthlyChange: number;
+    trendDirection: "up" | "down";
+  };
+  cacheHitRate: number;
+  cacheHitTrend: {
+    monthlyChange: number;
+    trendDirection: "up" | "down";
+  };
 }
 
 interface Domain {
@@ -67,13 +87,12 @@ interface Content {
   domains: Domain[];
 }
 
-// Main data interface
-export default interface MonthlyData {
-  userRole: string; // "client" or "provider"
-  month: string;
-  currentBalance: number;
-  spending: Spending;
+// Month data interface
+export interface ClientMonthData extends BaseMonth {
+  overview: { spending: Spending; insights: Insights; uptime: number };
   content: Content;
   performance: Performance;
   storage: Storage;
 }
+
+export type ClientData = ClientMonthData[];

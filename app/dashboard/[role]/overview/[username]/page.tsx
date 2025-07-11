@@ -4,7 +4,12 @@ import Image from "next/image";
 import useClientData from "../../../../lib/api/client";
 import useProviderData from "../../../../lib/api/provider";
 import { useEffect, useState } from "react";
-import MonthlyData from "../../../../types/dataClient";
+
+import { ClientData } from "../../../../types/dataClient";
+import { ProviderData } from "../../../../types/dataProvider";
+import { ClientMonthData } from "../../../../types/dataClient";
+import { ProviderMonthData } from "../../../../types/dataProvider";
+
 import Summary from "../../../../components/overview/Summary";
 import MonthlySpendings from "../../../../components/overview/MonthlySpendings";
 import UptimePercentage from "../../../../components/overview/UptimePercentage";
@@ -12,14 +17,19 @@ import Insights from "../../../../components/overview/Insights";
 import BandwidthUsed from "../../../../components/overview/BandwidthUsed";
 import QuickActionsAlerts from "../../../../components/overview/QuickActionsAlerts";
 
-export default function OverviewDashboard() {
-  const { user } = useAuth();
-  const [isLoading, setIsLoading] = useState(true);
-  const [clientData, setClientData] = useState(null);
-  const [providerData, setProviderData] = useState(null);
-  let aprilData;
+interface User {
+  role: "client" | "provider";
+  username: string;
+}
 
-  // Call the hooks at the top level
+export default function OverviewDashboard() {
+  const { user } = useAuth() as { user: User | null };
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [clientData, setClientData] = useState<ClientData | null>(null);
+  const [providerData, setProviderData] = useState<ProviderData | null>(null);
+  let aprilData: ClientMonthData | ProviderMonthData | undefined;
+
+  // Call the hooks
   const fetchClientData = user?.role === "client" ? useClientData() : null;
   const fetchProviderData =
     user?.role === "provider" ? useProviderData() : null;
@@ -40,10 +50,12 @@ export default function OverviewDashboard() {
   }, [user?.role, fetchClientData, fetchProviderData]);
 
   if (user?.role === "client") {
-    aprilData = clientData?.find((item: MonthlyData) => item.month === "April");
+    aprilData = clientData?.find(
+      (item: ClientMonthData) => item.month === "April"
+    );
   } else if (user?.role === "provider") {
     aprilData = providerData?.find(
-      (item: MonthlyData) => item.month === "April"
+      (item: ProviderMonthData) => item.month === "April"
     );
   }
 
@@ -96,15 +108,19 @@ export default function OverviewDashboard() {
 
               {/* Uptime Percentage - 20% */}
               <div className="h-[18%] min-h-[100px] bg-white border-black border-2 rounded-lg shadow p-4 md:p-6">
-                {user?.role === "client" ? (
+                {user?.role === "client" && aprilData && (
                   <UptimePercentage
                     userRole="client"
-                    uptime={aprilData?.overview?.uptime}
+                    uptime={(aprilData as ClientMonthData).overview?.uptime}
                   />
-                ) : (
+                )}
+
+                {user?.role === "provider" && aprilData && (
                   <UptimePercentage
                     userRole="provider"
-                    uptime={aprilData?.overview?.pickHoursOnline}
+                    uptime={
+                      (aprilData as ProviderMonthData).overview?.pickHoursOnline
+                    }
                   />
                 )}
               </div>
@@ -114,25 +130,41 @@ export default function OverviewDashboard() {
             <div className="space-y-4 md:space-y-5">
               {/* Insights of the month - 50% */}
               <div className="h-[50%] xl:h-[40%] bg-white border-black border-2 rounded-lg shadow p-4 md:p-6">
-                {user?.role === "client" ? (
+                {user?.role === "client" && aprilData && (
                   <Insights
                     userRole="client"
-                    bandwidth={aprilData?.overview?.insights.bandwidthTotal}
-                    requests={aprilData?.overview?.insights.requestsServed}
-                    cacheHitRate={aprilData?.overview?.insights.cacheHitRate}
-                    currentMonth={aprilData?.month}
+                    bandwidth={
+                      (aprilData as ClientMonthData).overview?.insights
+                        .bandwidthTotal
+                    }
+                    requests={
+                      (aprilData as ClientMonthData).overview?.insights
+                        .requestsServed
+                    }
+                    cacheHitRate={
+                      (aprilData as ClientMonthData).overview?.insights
+                        .cacheHitRate
+                    }
+                    currentMonth={(aprilData as ClientMonthData).month}
                   />
-                ) : (
+                )}
+
+                {user?.role === "provider" && aprilData && (
                   <Insights
                     userRole="provider"
-                    storageUsed={aprilData?.overview?.insights.storageUsed}
+                    storageUsed={
+                      (aprilData as ProviderMonthData).overview?.insights
+                        .storageUsed
+                    }
                     earningsFromStorage={
-                      aprilData?.overview?.insights.earningsFromStorage
+                      (aprilData as ProviderMonthData).overview?.insights
+                        .earningsFromStorage
                     }
                     earningsFromBandwidth={
-                      aprilData?.overview?.insights.earningsFromBandwidth
+                      (aprilData as ProviderMonthData).overview?.insights
+                        .earningsFromBandwidth
                     }
-                    currentMonth={aprilData?.month}
+                    currentMonth={(aprilData as ProviderMonthData).month}
                   />
                 )}
               </div>
