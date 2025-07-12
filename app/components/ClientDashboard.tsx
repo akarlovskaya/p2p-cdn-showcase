@@ -1,5 +1,4 @@
 "use client";
-import { useAuth } from "../lib/contexts/auth-context";
 import useClientData from "../lib/api/client";
 
 export default function ClientDashboard() {

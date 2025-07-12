@@ -1,10 +1,4 @@
-import {
-  FiHome,
-  FiGlobe,
-  FiActivity,
-  FiSettings,
-  FiUsers,
-} from "react-icons/fi";
+import { FiGlobe, FiActivity, FiSettings, FiUsers } from "react-icons/fi";
 import Link from "next/link";
 
 type SidebarItemsProps = {

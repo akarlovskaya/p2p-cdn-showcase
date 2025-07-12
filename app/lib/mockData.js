@@ -1,6 +1,3 @@
-import { uptime } from "process";
-import { cache } from "react";
-
 export const mockDataClient = {
   months: [
     {

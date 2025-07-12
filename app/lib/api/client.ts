@@ -6,7 +6,7 @@ export async function fetchOverviewData() {
   // console.log("Fetch function executing"); // Debug 1
 
   try {
-    const res = await fetch("/api/overview");
+    const res = await fetch("/api/overview/");
     // console.log("Response status:", res.status); // Debug 2
 
     if (!res.ok) {

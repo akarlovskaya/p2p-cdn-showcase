@@ -3,10 +3,7 @@ import { useAuth } from "../../../../lib/contexts/auth-context";
 import Image from "next/image";
 import useClientData from "../../../../lib/api/client";
 import useProviderData from "../../../../lib/api/provider";
-import { useEffect, useState } from "react";
 
-import { ClientData } from "../../../../types/dataClient";
-import { ProviderData } from "../../../../types/dataProvider";
 import { ClientMonthData } from "../../../../types/dataClient";
 import { ProviderMonthData } from "../../../../types/dataProvider";
 
@@ -24,44 +21,28 @@ interface User {
 
 export default function OverviewDashboard() {
   const { user } = useAuth() as { user: User | null };
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [clientData, setClientData] = useState<ClientData | null>(null);
-  const [providerData, setProviderData] = useState<ProviderData | null>(null);
-  let aprilData: ClientMonthData | ProviderMonthData | undefined;
-
-  // Call the hooks
-  const fetchClientData = user?.role === "client" ? useClientData() : null;
-  const fetchProviderData =
-    user?.role === "provider" ? useProviderData() : null;
+  // const aprilData: ClientMonthData | ProviderMonthData | undefined;
 
   const userFirstName = user?.username.split("-")[0] || "";
   const capitalizedFirstName = userFirstName
     ? userFirstName[0].toUpperCase() + userFirstName.slice(1)
     : "";
 
-  useEffect(() => {
-    if (user?.role === "client") {
-      setClientData(fetchClientData?.data || null);
-      setIsLoading(false);
-    } else if (user?.role === "provider") {
-      setProviderData(fetchProviderData.data || null);
-      setIsLoading(false);
-    }
-  }, [user?.role, fetchClientData, fetchProviderData]);
+  // Fetch data based on user role
+  const { data: mockDataClient } = useClientData();
+  const { data: mockDataProvider } = useProviderData();
 
-  if (user?.role === "client") {
-    aprilData = clientData?.find(
-      (item: ClientMonthData) => item.month === "April"
-    );
-  } else if (user?.role === "provider") {
-    aprilData = providerData?.find(
-      (item: ProviderMonthData) => item.month === "April"
-    );
+  // Derived data based on user role
+  const activeData =
+    user?.role === "client" ? mockDataClient : mockDataProvider;
+
+  if (!activeData) {
+    return <p>Loading...</p>;
   }
 
-  return isLoading ? (
-    <p>Loading</p>
-  ) : (
+  const aprilData = activeData?.find((month) => month.month === "April");
+
+  return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-6">
       <h1 className="text-2xl font-bold mb-6">
         Hello{`, ${capitalizedFirstName}`}
@@ -97,12 +78,9 @@ export default function OverviewDashboard() {
               {/* Monthly Spendings/Earnings */}
               <div className="h-[50%] min-h-[400px] bg-white border-black border-2 rounded-lg shadow p-4 md:p-6">
                 {user?.role === "client" ? (
-                  <MonthlySpendings userRole="client" userData={clientData} />
+                  <MonthlySpendings userRole="client" userData={activeData} />
                 ) : (
-                  <MonthlySpendings
-                    userRole="provider"
-                    userData={providerData}
-                  />
+                  <MonthlySpendings userRole="provider" userData={activeData} />
                 )}
               </div>
 
@@ -172,7 +150,7 @@ export default function OverviewDashboard() {
               {/* Bandwidth Used per Domain and QuickActionsAlerts */}
               <div className="h-[50%] xl:h-[50%] bg-white border-black border-2 rounded-lg shadow p-4 md:p-6">
                 {user?.role === "client" ? (
-                  <BandwidthUsed userData={clientData} />
+                  <BandwidthUsed userData={activeData} />
                 ) : (
                   <QuickActionsAlerts />
                 )}

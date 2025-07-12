@@ -1,12 +1,10 @@
 "use client";
 import { useAuth } from "../lib/contexts/auth-context";
 import { useRouter } from "next/navigation";
-import { useQueryClient } from "@tanstack/react-query";
 
 export default function RoleSelector() {
   const router = useRouter();
   const { login } = useAuth();
-  const queryClient = useQueryClient();
 
   const handleRoleSelect = async (role: string, username: string) => {
     await login(username, role);

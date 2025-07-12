@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { Chart, ChartType } from "chart.js/auto";
 
 declare module "chart.js" {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   interface PluginOptionsByType<TType extends ChartType> {
     doughnutCenterText?: {
       text?: string;
@@ -20,7 +21,7 @@ Chart.register({
         chart.config.options.plugins.doughnutCenterText;
       const {
         ctx,
-        chartArea: { left, right, top, bottom, width, height },
+        chartArea: { left, right, top, bottom },
       } = chart;
 
       ctx.save();

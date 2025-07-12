@@ -11,7 +11,6 @@ import {
   Legend,
   ChartOptions,
 } from "chart.js";
-import { data } from "cheerio/dist/commonjs/api/attributes";
 
 // Register ChartJS components
 ChartJS.register(

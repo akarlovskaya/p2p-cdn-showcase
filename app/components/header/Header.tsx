@@ -1,5 +1,5 @@
 "use client";
-import { FiMenu, FiBell, FiUser, FiX } from "react-icons/fi";
+import { FiMenu, FiBell, FiX } from "react-icons/fi";
 import { useSidebar } from "../../lib/contexts/sidebar-context";
 import UserDropdown from "./UserDropdown";
 import SearchBar from "./SearchBar";
