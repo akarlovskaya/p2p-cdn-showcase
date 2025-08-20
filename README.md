@@ -1,6 +1,6 @@
 # Peer-to-Peer CDN Showcase
 
-![Live Project](link here will be added later)
+![https://p2p-cdn-showcase.vercel.app/dashboard]
 
 A frontend showcase for a decentralized Content Delivery Network (CDN) platform where peers can rent out their edge servers and customers can save on traffic costs.
 
